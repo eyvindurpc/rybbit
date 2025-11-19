@@ -85,11 +85,11 @@ const pluginList = [
   // Add Cloudflare Turnstile captcha (cloud only)
   ...(IS_CLOUD && process.env.TURNSTILE_SECRET_KEY && process.env.NODE_ENV === "production"
     ? [
-        captcha({
-          provider: "cloudflare-turnstile",
-          secretKey: process.env.TURNSTILE_SECRET_KEY,
-        }),
-      ]
+      captcha({
+        provider: "cloudflare-turnstile",
+        secretKey: process.env.TURNSTILE_SECRET_KEY,
+      }),
+    ]
     : []),
 ];
 
@@ -135,7 +135,10 @@ export const auth = betterAuth({
     },
   },
   plugins: pluginList,
-  trustedOrigins: ["http://localhost:3002"],
+  trustedOrigins: [
+    "http://localhost:3002",
+    ...(process.env.CLIENT_URL ? [process.env.CLIENT_URL] : []),
+  ],
   advanced: {
     useSecureCookies: process.env.NODE_ENV === "production", // don't mark Secure in dev
     defaultCookieAttributes: {
