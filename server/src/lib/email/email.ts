@@ -20,7 +20,7 @@ export const sendEmail = async (email: string, subject: string, html: string) =>
   }
   try {
     const response = await resend.emails.send({
-      from: "Rybbit <automail@rybbit.com>",
+      from: "Wppfy Analytics <automail@mail.wppfy.com>",
       to: email,
       subject,
       html,
