@@ -56,6 +56,8 @@ services:
   postgres:
     image: 'postgres:17.4'
     container_name: postgres
+    ports:
+      - '0.0.0.0:5420:5420'
     environment:
       - 'POSTGRES_USER=${POSTGRES_USER:-frog}'
       - 'POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-frog}'
@@ -85,7 +87,7 @@ services:
       - 'CLICKHOUSE_DB=${CLICKHOUSE_DB:-analytics}'
       - 'CLICKHOUSE_PASSWORD=${CLICKHOUSE_PASSWORD:-frog}'
       - POSTGRES_HOST=postgres
-      - POSTGRES_PORT=5432
+      - POSTGRES_PORT=5420
       - 'POSTGRES_DB=${POSTGRES_DB:-analytics}'
       - 'POSTGRES_USER=${POSTGRES_USER:-frog}'
       - 'POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-frog}'
