@@ -20,7 +20,7 @@ export const sendEmail = async (email: string, subject: string, html: string) =>
   }
   try {
     const response = await resend.emails.send({
-      from: `Wppfy Analytics ${process.env.RESEND_EMAIL_FROM}>`,
+      from: `Wppfy Analytics <automail@wppfy.com>`,
       to: email,
       subject,
       html,
